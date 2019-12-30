@@ -1,5 +1,5 @@
 # OcarinaOfTime-LiveMenu
-A live menu actor in Ocarina of Time that replaces the kaleidoscope actor.
+A live menu actor overlay in Ocarina of Time that aims to substitute for the kaleidoscope menu.
 
 ## Contributors
 Main Developers: Drahsid, Psi-Hate
