@@ -3,7 +3,6 @@
 #include "z64_inputHandler.h"
 #include "menu.h"
 
-#define GLOBAL_SCENE_FRAME 0x802120BC
 #define ACT_ID 0x0082
 
 
@@ -37,6 +36,7 @@ typedef struct {
 
 static void init(entity_t *en, z64_global_t *gl) 
 {
+	loadTextures();
 	en->currentTime = 0;
 	en->end = 0xDEADBEEF;
 	en->end2 = 0xDEADBEEF;

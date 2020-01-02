@@ -234,7 +234,7 @@ void construct_menuCategory_t(menuCategory_t* category, menuItem_t* items, uint8
 	category->categoryBackground.tile.width = categoryWidth;
 	category->categoryBackground.tile.height = 64;
 
-	category->categoryBackground.texture.timg = (long unsigned int)&tLongBlackBox;
+	category->categoryBackground.texture.timg = &tLongBlackBox;
 	category->categoryBackground.texture.width = 32;
 	category->categoryBackground.texture.height = 32;
 	category->categoryBackground.texture.fmt = G_IM_FMT_RGBA;
@@ -329,44 +329,44 @@ void construct_menu_t(menu_t* state) {
 	state->cMeta[5].below = CATEGORY_PROJECTILE;
 
 	
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_BOW].item.texture.timg = (long unsigned int)&tBow;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_FIRE].item.texture.timg = (long unsigned int)&tFireArrow;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_ICE].item.texture.timg = (long unsigned int)&tIceArrow;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_LIGHT].item.texture.timg = (long unsigned int)&tLightArrows;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_HOOK].item.texture.timg = (long unsigned int)&tHookshot;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_LONG].item.texture.timg = (long unsigned int)&tLongshot;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_SLING].item.texture.timg = (long unsigned int)&tSlingshot;
-    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_BOOMER].item.texture.timg = (long unsigned int)&tBoomerang;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_BOW].item.texture.timg = &tBow;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_FIRE].item.texture.timg = &tFireArrow;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_ICE].item.texture.timg = &tIceArrow;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_LIGHT].item.texture.timg = &tLightArrows;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_HOOK].item.texture.timg = &tHookshot;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_LONG].item.texture.timg = &tLongshot;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_SLING].item.texture.timg = &tSlingshot;
+    state->cCategory[CATEGORY_PROJECTILE].items[PROJ_BOOMER].item.texture.timg = &tBoomerang;
 
 	//Set the icons for these, annd make defiens. See above/below
-	state->cCategory[CATEGORY_WEAPON].items[0].item.texture.timg = (long unsigned int)&tKokiriSword;
-	state->cCategory[CATEGORY_WEAPON].items[1].item.texture.timg = (long unsigned int)&tMasterSword;
-	state->cCategory[CATEGORY_WEAPON].items[2].item.texture.timg = (long unsigned int)&tBiggoron;
-	state->cCategory[CATEGORY_WEAPON].items[3].item.texture.timg = (long unsigned int)&tDekuShield;
-	state->cCategory[CATEGORY_WEAPON].items[4].item.texture.timg = (long unsigned int)&tHylianShield;
-	state->cCategory[CATEGORY_WEAPON].items[5].item.texture.timg = (long unsigned int)&tMirrorShield;
+	state->cCategory[CATEGORY_WEAPON].items[0].item.texture.timg = &tKokiriSword;
+	state->cCategory[CATEGORY_WEAPON].items[1].item.texture.timg = &tMasterSword;
+	state->cCategory[CATEGORY_WEAPON].items[2].item.texture.timg = &tBiggoron;
+	state->cCategory[CATEGORY_WEAPON].items[3].item.texture.timg = &tDekuShield;
+	state->cCategory[CATEGORY_WEAPON].items[4].item.texture.timg = &tHylianShield;
+	state->cCategory[CATEGORY_WEAPON].items[5].item.texture.timg = &tMirrorShield;
 
-	state->cCategory[CATEGORY_ARMOR].items[0].item.texture.timg = (long unsigned int)&tKokiriTunic;
-	state->cCategory[CATEGORY_ARMOR].items[1].item.texture.timg = (long unsigned int)&tGoronTunic;
-	state->cCategory[CATEGORY_ARMOR].items[2].item.texture.timg = (long unsigned int)&tZoraTunic;
-	state->cCategory[CATEGORY_ARMOR].items[3].item.texture.timg = (long unsigned int)&tKokiriBoots;
-	state->cCategory[CATEGORY_ARMOR].items[4].item.texture.timg = (long unsigned int)&tIronBoots;
-	state->cCategory[CATEGORY_ARMOR].items[5].item.texture.timg = (long unsigned int)&tHoverBoots;
+	state->cCategory[CATEGORY_ARMOR].items[0].item.texture.timg = &tKokiriTunic;
+	state->cCategory[CATEGORY_ARMOR].items[1].item.texture.timg = &tGoronTunic;
+	state->cCategory[CATEGORY_ARMOR].items[2].item.texture.timg = &tZoraTunic;
+	state->cCategory[CATEGORY_ARMOR].items[3].item.texture.timg = &tKokiriBoots;
+	state->cCategory[CATEGORY_ARMOR].items[4].item.texture.timg = &tIronBoots;
+	state->cCategory[CATEGORY_ARMOR].items[5].item.texture.timg = &tHoverBoots;
     
-	state->cCategory[CATEGORY_HAND].items[HAND_HAM].item.texture.timg = (long unsigned int)&tHammer;
-    state->cCategory[CATEGORY_HAND].items[HAND_BOM].item.texture.timg = (long unsigned int)&tBombs;
-    state->cCategory[CATEGORY_HAND].items[HAND_BOC].item.texture.timg = (long unsigned int)&tBombchu;
-    state->cCategory[CATEGORY_HAND].items[HAND_STI].item.texture.timg = (long unsigned int)&tDekuStick;
-    state->cCategory[CATEGORY_HAND].items[HAND_NUT].item.texture.timg = (long unsigned int)&tDekuNuts;
+	state->cCategory[CATEGORY_HAND].items[HAND_HAM].item.texture.timg = &tHammer;
+    state->cCategory[CATEGORY_HAND].items[HAND_BOM].item.texture.timg = &tBombs;
+    state->cCategory[CATEGORY_HAND].items[HAND_BOC].item.texture.timg = &tBombchu;
+    state->cCategory[CATEGORY_HAND].items[HAND_STI].item.texture.timg = &tDekuStick;
+    state->cCategory[CATEGORY_HAND].items[HAND_NUT].item.texture.timg = &tDekuNuts;
 
-    state->cCategory[CATEGORY_MAGIC].items[MAG_NAY].item.texture.timg = (long unsigned int)&tNayru;
-    state->cCategory[CATEGORY_MAGIC].items[MAG_DIN].item.texture.timg = (long unsigned int)&tDin;
-    state->cCategory[CATEGORY_MAGIC].items[MAG_FAR].item.texture.timg = (long unsigned int)&tFarore;
+    state->cCategory[CATEGORY_MAGIC].items[MAG_NAY].item.texture.timg = &tNayru;
+    state->cCategory[CATEGORY_MAGIC].items[MAG_DIN].item.texture.timg = &tDin;
+    state->cCategory[CATEGORY_MAGIC].items[MAG_FAR].item.texture.timg = &tFarore;
 
-    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_0].item.texture.timg = (long unsigned int)&tEmptyBottle;
-    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_1].item.texture.timg = (long unsigned int)&tEmptyBottle;
-    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_2].item.texture.timg = (long unsigned int)&tEmptyBottle;
-    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_3].item.texture.timg = (long unsigned int)&tEmptyBottle;
+    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_0].item.texture.timg = &tEmptyBottle;
+    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_1].item.texture.timg = &tEmptyBottle;
+    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_2].item.texture.timg = &tEmptyBottle;
+    state->cCategory[CATEGORY_BOTTLE].items[BOTTLE_3].item.texture.timg = &tEmptyBottle;
 
 
 	construct_guiObject_t(&state->selectionBox);
@@ -376,7 +376,7 @@ void construct_menu_t(menu_t* state) {
 	state->selectionBox.tile.width = 19;
 	state->selectionBox.tile.height= 19;
 
-	state->selectionBox.texture.timg = (long unsigned int)&tRedBox;
+	state->selectionBox.texture.timg = &tRedBox;
 	state->selectionBox.texture.width = 32;
 	state->selectionBox.texture.height = 32;
 	state->selectionBox.texture.fmt = G_IM_FMT_RGBA;
@@ -399,7 +399,7 @@ void construct_menu_t(menu_t* state) {
 	state->dPadTop.tile.width = 40;
 	state->dPadTop.tile.height= 24;
 
-	state->dPadTop.texture.timg = (long unsigned int)&tDpad1;
+	state->dPadTop.texture.timg = &tDpad1;
 	state->dPadTop.texture.width = 64;
 	state->dPadTop.texture.height = 32;
 	state->dPadTop.texture.fmt = G_IM_FMT_RGBA;
@@ -413,7 +413,7 @@ void construct_menu_t(menu_t* state) {
 	state->dPadBottom.tile.width = 40;
 	state->dPadBottom.tile.height= 24;
 
-	state->dPadBottom.texture.timg = (long unsigned int)&tDpad0;
+	state->dPadBottom.texture.timg = &tDpad0;
 	state->dPadBottom.texture.width = 64;
 	state->dPadBottom.texture.height = 32;
 	state->dPadBottom.texture.fmt = G_IM_FMT_RGBA;
@@ -755,16 +755,16 @@ void update_menu_t(menu_t* state, z64_inputHandler_t* input, z64_global_t *gl, f
 
 	if (state->menuOpen && state->dPadShow) 
 	{
-		state->dPadBottom.texture.timg = (long unsigned int)&tDpad3;
+		state->dPadBottom.texture.timg = &tDpad3;
 		zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &state->dPadBottom.texture, &state->dPadBottom.tile, 240);
-		state->dPadTop.texture.timg = (long unsigned int)&tDpad2;
+		state->dPadTop.texture.timg = &tDpad2;
 		zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &state->dPadTop.texture, &state->dPadTop.tile, 240);
 	}
 	else if (state->dPadShow)
 	{
-		state->dPadTop.texture.timg = (long unsigned int)&tDpad1;
+		state->dPadTop.texture.timg = &tDpad1;
 		zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &state->dPadTop.texture, &state->dPadTop.tile, 240);
-		state->dPadBottom.texture.timg = (long unsigned int)&tDpad0;
+		state->dPadBottom.texture.timg = &tDpad0;
 		zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &state->dPadBottom.texture, &state->dPadBottom.tile, 240);
 	}
 }
