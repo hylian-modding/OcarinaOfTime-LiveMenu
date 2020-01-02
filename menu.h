@@ -150,6 +150,8 @@ typedef struct {
 ///
 
 typedef struct {
+	uint8_t doesExist;
+	uint8_t demandImmediateUpdate;
 	uint8_t menuOpen;
 	uint8_t dPadShow;
 	uint8_t cButton;
@@ -199,22 +201,28 @@ void construct_guiObject_t(guiObject_t* guiObject) {
 }
 
 // Update gui object interpolator
-void update_guiObject_t(guiObject_t* guiObject, float currentTime) {
-	float deltaTime = currentTime - guiObject->lastUpdate;
-	float ddt = guiObject->dampening * deltaTime;
-	float ddd = guiObject->dampening * ddt;
+void update_guiObject_t(guiObject_t* guiObject, float currentTime, uint8_t diu) {
+	if (diu) {
+		guiObject->tile.x = guiObject->targetX;
+		guiObject->tile.y = guiObject->targetY;
+	}
+	else {
+		float deltaTime = currentTime - guiObject->lastUpdate;
+		float ddt = guiObject->dampening * deltaTime;
+		float ddd = guiObject->dampening * ddt;
 
-	float forceX = guiObject->velocityX - (guiObject->tile.x - guiObject->targetX) * ddd;
-	float forceY = guiObject->velocityY - (guiObject->tile.y - guiObject->targetY) * ddd;
+		float forceX = guiObject->velocityX - (guiObject->tile.x - guiObject->targetX) * ddd;
+		float forceY = guiObject->velocityY - (guiObject->tile.y - guiObject->targetY) * ddd;
 
-	float e = 1 + ddt;
-	e *= e;
+		float e = 1 + ddt;
+		e *= e;
 
-	guiObject->velocityX = forceX / e;
-	guiObject->velocityY = forceY / e;
+		guiObject->velocityX = forceX / e;
+		guiObject->velocityY = forceY / e;
 
-	guiObject->tile.x += guiObject->velocityX * deltaTime;
-	guiObject->tile.y += guiObject->velocityY * deltaTime;
+		guiObject->tile.x += guiObject->velocityX * deltaTime;
+		guiObject->tile.y += guiObject->velocityY * deltaTime;
+	}
 
 	guiObject->lastUpdate = currentTime;
 }
@@ -253,8 +261,8 @@ void construct_menuCategory_t(menuCategory_t* category, menuItem_t* items, uint8
 }
 
 // Update menu category; automated drawing
-void update_menuCategory_t(menuCategory_t* category, z64_global_t* gl, z64_inputHandler_t* input, menu_t* state,  float currentTime, float deltaTime) {
-	update_guiObject_t(&category->categoryBackground, currentTime);
+void update_menuCategory_t(menuCategory_t* category, z64_global_t* gl, z64_inputHandler_t* input, menu_t* state, float currentTime, float deltaTime) {
+	update_guiObject_t(&category->categoryBackground, currentTime, state->demandImmediateUpdate);
 
 	interpolateInt(deltaTime, 3, &category->alpha.v, &category->alpha.p, category->alpha.t);
     zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &category->categoryBackground.texture, &category->categoryBackground.tile, category->alpha.p);
@@ -268,7 +276,7 @@ void update_menuCategory_t(menuCategory_t* category, z64_global_t* gl, z64_input
 		uint8_t drawBoxes = state->category == category->id;
 
 		
-		update_guiObject_t(&category->items[i].item, currentTime);
+		update_guiObject_t(&category->items[i].item, currentTime, state->demandImmediateUpdate);
 		
 		if (category->items[i].isShown) zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &category->items[i].item.texture, &category->items[i].item.tile, category->alpha.p);
 	}
@@ -277,6 +285,8 @@ void update_menuCategory_t(menuCategory_t* category, z64_global_t* gl, z64_input
 
 // Construct menu data
 void construct_menu_t(menu_t* state) {
+	state->doesExist = 1;
+	state->demandImmediateUpdate = 0;
 	state->menuOpen = 0;
 	state->dPadShow = 1;
 	state->category = 0;
@@ -742,7 +752,7 @@ void update_menu_t(menu_t* state, z64_inputHandler_t* input, z64_global_t *gl, f
     if (state->selectionAlpha.t < 0) state->selectionAlpha.t = 0;
     if (state->selectionAlpha.t > 255) state->selectionAlpha.t = 255;
     interpolateInt(deltaTime, 3, &state->selectionAlpha.v, &state->selectionAlpha.p, state->selectionAlpha.t);
-    update_guiObject_t(&state->smoothSelectionBox, currentTime);
+    update_guiObject_t(&state->smoothSelectionBox, currentTime, state->demandImmediateUpdate);
 
     state->selectionBox.tile.x = state->smoothSelectionBox.targetX;
     state->selectionBox.tile.y = state->smoothSelectionBox.targetY;
@@ -767,6 +777,7 @@ void update_menu_t(menu_t* state, z64_inputHandler_t* input, z64_global_t *gl, f
 		state->dPadBottom.texture.timg = &tDpad0;
 		zh_draw_ui_sprite(&gl->common.gfx_ctxt->overlay, &state->dPadBottom.texture, &state->dPadBottom.tile, 240);
 	}
+	state->demandImmediateUpdate = 0;
 }
 
 #endif
